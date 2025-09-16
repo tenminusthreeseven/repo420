@@ -1,9 +1,10 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponse
+from employees.models import Employee
 
 def home(request):
-    
-    
-    return HttpResponse('<h1>Welcome to Jal Rakshak</h1>')
+    employees = Employee.objects.all()  # Fixed variable name
+    context = {
+        'employees': employees,
+    }
+    print(employees)  # This will print the QuerySet to the console
+    return render(request, 'home.html', context)
